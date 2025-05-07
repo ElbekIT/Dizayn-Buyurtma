@@ -17,19 +17,19 @@
 
     @keyframes fadeIn {
       from {
-      opacity: 0;
+        opacity: 0;
       }
       to {
-      opacity: 1;
+        opacity: 1;
       }
     }
 
     body {
-  -webkit-user-select: none; /* Chrome, Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE10+ */
-  user-select: none;         /* Standard */
-}
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
 
     header {
       background-color: #0d6efd;
@@ -52,12 +52,12 @@
 
     @keyframes slideIn {
       from {
-      transform: translateY(50px);
-      opacity: 0;
+        transform: translateY(50px);
+        opacity: 0;
       }
       to {
-      transform: translateY(0);
-      opacity: 1;
+        transform: translateY(0);
+        opacity: 1;
       }
     }
 
@@ -127,15 +127,6 @@
       transform: scale(1.05);
     }
   </style>
-  <style>
-    body {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-  </style>
-  
 </head>
 <body>
 
@@ -171,61 +162,25 @@
     </div>
 
     <div class="cta">
-      <a href="/html/order.html">📥 Buyurtma berish →</a>
+      <a href="javascript:void(0);" onclick="checkBusinessHours()">📥 Buyurtma berish →</a>
     </div>
+
   </main>
 
-
-
   <script>
-    // Sichqonchaning o'ng tugmasini bloklash
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-    });
-  
-    // Klaviatura tugmalarini bloklash
-    document.addEventListener('keydown', function(e) {
-      // Ctrl + U, Ctrl + C, Ctrl + S, Ctrl + P, F12, Ctrl+Shift+I
-      if (
-        (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
-        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
-        e.key === 'F12'
-      ) {
-        e.preventDefault();
-        alert("Bu amal bloklangan!");
+    // Ish vaqti soati: 09:00 - 18:00
+    function checkBusinessHours() {
+      const now = new Date();
+      const currentHour = now.getHours();
+      const currentMinute = now.getMinutes();
+
+      if (currentHour >= 9 && currentHour < 18) {
+        window.location.href = "/html/order.html"; // Buyurtma berish sahifasiga o'tish
+      } else {
+        alert("Hozir ish vaqti emas. Ish vaqti: 09:00 - 18:00.");
       }
-    });
-  
-    // Matnni tanlashni bloklash
-    document.addEventListener('selectstart', function(e) {
-      e.preventDefault();
-    });
-  
-    // Nusxa olishni bloklash
-    document.addEventListener('copy', function(e) {
-      e.preventDefault();
-      alert("Nusxa olish mumkin emas!");
-    });
-  
-    // Rasmni saqlashga urinishda to‘siq
-    document.addEventListener("mousedown", function (e) {
-      if (e.target.tagName === "IMG" && e.button === 2) {
-        e.preventDefault();
-      }
-    });
-  
-    // Sayt kodini ko‘rishga urinishni aniqlash
-    document.onkeydown = function(e) {
-      if (
-        e.keyCode === 123 || // F12
-        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
-        (e.ctrlKey && e.keyCode === 85) // Ctrl+U
-      ) {
-        return false;
-      }
-    };
+    }
   </script>
-  
 
 </body>
 </html>
