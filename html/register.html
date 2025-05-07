@@ -2,66 +2,87 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ro'yxatdan o'tish</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Arial', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       animation: fadeIn 1.5s ease-in-out;
     }
     .container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 25px;
       border-radius: 15px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       text-align: center;
+      width: 100%;
+      max-width: 400px;
       animation: slideDown 1s ease-out;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333;
     }
     input, button {
       display: block;
       width: 100%;
-      padding: 12px;
-      margin-top: 15px;
+      padding: 14px;
+      margin-top: 18px;
       font-size: 16px;
       border-radius: 5px;
-      border: 1px solid #ddd;
+      border: 1px solid #ccc;
+      transition: all 0.3s ease;
     }
     input:focus {
       outline: none;
       border-color: #6a11cb;
-      box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+      box-shadow: 0 0 6px rgba(106, 17, 203, 0.5);
     }
     button {
       background-color: #6a11cb;
       color: white;
       border: none;
+      font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
     button:hover {
       background-color: #2575fc;
     }
+
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
+
     @keyframes slideDown {
       from {
-        transform: translateY(-50px);
+        transform: translateY(-40px);
         opacity: 0;
       }
       to {
         transform: translateY(0);
         opacity: 1;
+      }
+    }
+
+    /* Mobil qurilmalar uchun moslashuv */
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px 20px;
+      }
+      input, button {
+        padding: 12px;
+        font-size: 15px;
       }
     }
   </style>
@@ -74,21 +95,17 @@
   </div>
 
   <script>
-    // Telegram ma'lumotlari
-    const BOT_TOKEN = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc"; // Bu yerga o'zingizning bot tokeningizni yozing
-    const CHAT_ID = "7833115003";     // Bu yerga o'zingizning chat ID'ingizni yozing
+    const BOT_TOKEN = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc"; // O'zingizning bot tokeningiz
+    const CHAT_ID = "7833115003"; // O'zingizning Telegram chat ID
 
     function register() {
       const name = document.getElementById('name').value.trim();
 
       if (name) {
-        // Foydalanuvchi ma'lumotlarini localStorage ga saqlash
         localStorage.setItem('user', name);
 
-        // Telegramga xabar yuborish
         const message = `🆕 Yangi foydalanuvchi ro'yxatdan o'tdi:\n👤 Ismi: ${name}`;
-        
-        // Xabar yuborish uchun fetch() metodi
+
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: "POST",
           headers: {
@@ -103,7 +120,7 @@
         .then(data => {
           if (data.ok) {
             alert("Muvaffaqiyatli ro'yxatdan o'tdingiz!");
-            window.location.href = "order.html"; // Ro'yxatdan o'tgach, order sahifasiga yo'naltirish
+            window.location.href = "order.html";
           } else {
             alert("Xatolik yuz berdi, iltimos qayta urinib ko'ring.");
           }
@@ -116,7 +133,7 @@
       }
     }
 
-    // Agar allaqachon ro'yxatdan o'tgan bo'lsa, to'g'ridan-to'g'ri order sahifasiga o'tkaziladi
+    // Agar foydalanuvchi oldin ro'yxatdan o'tgan bo'lsa, uni avtomatik ravishda order sahifasiga yo'naltiramiz
     if (localStorage.getItem('user')) {
       window.location.href = "order.html";
     }
