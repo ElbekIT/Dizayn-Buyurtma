@@ -1,41 +1,33 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dizayn Buyurtma</title>
-  <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elbek Design</title>
+  <link rel="icon" href="/img/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      height: 100vh;
+      font-family: 'Inter', sans-serif;
       background: linear-gradient(to bottom, #0066ff, #feb47b);
+      height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;
       position: relative;
-      color: #333;
-      text-align: center;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
     }
 
     .background-animation {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
       background: linear-gradient(45deg, red, green, blue, yellow, purple);
       background-size: 400% 400%;
-      animation: gradientAnimation 10s infinite;
+      animation: gradientAnimation 12s infinite;
     }
 
     @keyframes gradientAnimation {
@@ -44,41 +36,61 @@
       100% { background-position: 0% 50%; }
     }
 
-    .wrapper {
-      padding: 40px;
+    .container {
       background: white;
+      padding: 30px;
       border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      z-index: 1;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
     }
 
     h1 {
-      font-size: 36px;
+      font-size: 32px;
+      color: #0066ff;
       margin-bottom: 20px;
-      color: blue;
-      text-decoration: none;
     }
+
+    .time-box {
+      background: #f7f7f7;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 25px;
+      animation: floatUp 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .time-box h2 {
+      font-size: 18px;
+      margin: 10px 0 5px;
+    }
+
+    .alert { color: red; font-weight: bold; }
+
+    .status { font-weight: bold; margin-top: 10px; }
 
     .button-container {
       display: flex;
+      justify-content: center;
       gap: 15px;
       flex-wrap: wrap;
-      justify-content: center;
     }
 
     .button {
-      width: 220px;
-      padding: 15px;
-      font-size: 16px;
-      font-weight: bold;
+      padding: 12px 25px;
       border: 2px solid #ff7e5f;
       border-radius: 10px;
       background-color: transparent;
       color: #ff7e5f;
+      font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
       text-decoration: none;
-      display: inline-block;
+      transition: 0.3s;
     }
 
     .button:hover {
@@ -86,61 +98,49 @@
       color: white;
     }
 
-    .icon { margin-right: 6px; }
-
     .help-btn {
       position: fixed;
       bottom: 20px;
       left: 20px;
+      background: #007bff;
+      color: white;
       width: 50px;
       height: 50px;
-      background-color: #007bff;
-      color: white;
       font-size: 24px;
-      border: none;
       border-radius: 50%;
+      border: none;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       cursor: pointer;
-      z-index: 1000;
-      transition: background 0.3s;
     }
-
-    .help-btn:hover { background-color: #0056b3; }
 
     .modal-overlay {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(3px);
-      z-index: 999;
       align-items: center;
       justify-content: center;
-      animation: fadeIn 0.4s ease;
+      z-index: 1000;
     }
 
     .modal-content {
       background: white;
-      padding: 30px;
-      border-radius: 20px;
+      padding: 25px;
+      border-radius: 15px;
       text-align: center;
       max-width: 300px;
-      width: 80%;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-      animation: slideUp 0.4s ease;
+      animation: slideUp 0.3s ease;
       position: relative;
     }
 
     .modal-logo {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #007bff;
+      margin-bottom: 10px;
+      border: 2px solid #007bff;
     }
 
     .close-btn {
@@ -148,69 +148,101 @@
       top: 10px;
       right: 15px;
       font-size: 22px;
-      color: #888;
+      color: #777;
       cursor: pointer;
-      transition: color 0.3s;
-    }
-
-    .close-btn:hover { color: #000; }
-
-    .modal-content h2 { margin: 10px 0 5px; }
-    .modal-content p { font-size: 16px; color: #333; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
 
     @keyframes slideUp {
-      from { transform: translateY(50px); opacity: 0; }
+      from { transform: translateY(30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
 
-    .work-hours {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(255, 255, 255, 0.9);
-      padding: 8px 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
-      z-index: 999;
+    @media(max-width: 500px) {
+      h1 { font-size: 26px; }
+      .button { width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ish vaqti banneri -->
-  <div class="work-hours">🕒 Ish vaqti: 09:00 - 18:00 (Dushanba - Shanba)</div>
-
   <div class="background-animation"></div>
+
+  <div class="container">
+    <h1>Elbek Design</h1>
+
+    <div class="time-box">
+      <h2>📆 Bugungi sana:</h2>
+      <p id="date"></p>
+      <h2>🕒 Hozirgi vaqt:</h2>
+      <p id="time"></p>
+      <h2>💼 Ish vaqti: 18:30 – 02:00</h2>
+      <p id="status" class="status"></p>
+    </div>
+
+    <div class="button-container">
+      <a href="/html/byqan.html" class="button">📄 Buyurtma qanday beriladi?</a>
+      <button class="button" onclick="checkOrderTime()">📝 Buyurtma berish</button>
+    </div>
+  </div>
+
+  <!-- Yordam tugmasi -->
   <button onclick="openHelp()" class="help-btn">❓</button>
 
-  <!-- Modal oynasi -->
+  <!-- Modal -->
   <div id="helpModal" class="modal-overlay">
     <div class="modal-content">
       <span class="close-btn" onclick="closeHelp()">✖</span>
-      <img src="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" alt="Logo" class="modal-logo" />
+      <img src="/img/logo.png" alt="Logo" class="modal-logo" />
       <h2>Elbek Qoriyev</h2>
       <p>+998 90 406 30 90</p>
     </div>
   </div>
 
-  <div class="wrapper">
-    <h1>Elbek Design</h1>
-    <div class="button-container">
-      <a href="/html/byqan.html" class="button"><span class="icon">📄</span>Buyurtma qanday beriladi?</a>
-      <a href="#" class="button" onclick="checkWorkHours(event)"><span class="icon">📝</span>Buyurtma berish</a>
-    </div>
-  </div>
-
   <script>
+    function updateTime() {
+      const now = new Date();
+      const dayNames = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+      const day = dayNames[now.getDay()];
+      const date = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      document.getElementById("date").textContent = `${day}, ${date}.${month}.${year}`;
+
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
+
+      // Ish vaqti tekshirish
+      const start = new Date();
+      start.setHours(18, 30, 0, 0);
+      const end = new Date();
+      end.setHours(2, 0, 0, 0);
+      if (now.getHours() < 12) end.setDate(end.getDate() + 1);
+      const isOpen = (now >= start || now <= end);
+      document.getElementById("status").innerHTML = isOpen
+        ? "<span style='color:green;'>📢 Ish olib borilmoqda</span>"
+        : "<span class='alert'>⚠️ Hozir ish vaqti emas</span>";
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function checkOrderTime() {
+      const now = new Date();
+      const start = new Date();
+      start.setHours(18, 30, 0, 0);
+      const end = new Date();
+      end.setHours(2, 0, 0, 0);
+      if (now.getHours() < 12) end.setDate(end.getDate() + 1);
+
+      if (now >= start || now <= end) {
+        alert('Buyurtmangiz qabul qilindi!');
+      } else {
+        alert('⚠️ Hozir ish vaqti emas.');
+      }
+    }
+
     function openHelp() {
       document.getElementById("helpModal").style.display = "flex";
     }
@@ -218,43 +250,6 @@
     function closeHelp() {
       document.getElementById("helpModal").style.display = "none";
     }
-
-    function checkWorkHours(e) {
-      const now = new Date();
-      const day = now.getDay(); // Yakshanba = 0, Dushanba = 1, ...
-      const hour = now.getHours();
-
-      // Dushanba (1) dan Shanba (6) gacha, soat 9:00 - 18:00 oralig'ida bo‘lsa
-      if (day >= 1 && day <= 6 && hour >= 9 && hour < 18) {
-        window.location.href = "/html/order.html";
-      } else {
-        alert("❌ Hozir ish vaqti emas. Iltimos, 09:00 - 18:00 orasida qaytadan urinib ko‘ring.");
-        e.preventDefault();
-      }
-    }
-
-    // Xavfsizlik bloklari
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('keydown', e => {
-      if (
-        (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
-        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
-        e.key === 'F12'
-      ) {
-        e.preventDefault();
-        alert("Bu amal bloklangan!");
-      }
-    });
-    document.addEventListener('selectstart', e => e.preventDefault());
-    document.addEventListener('copy', e => {
-      e.preventDefault();
-      alert("Nusxa olish mumkin emas!");
-    });
-    document.addEventListener("mousedown", function (e) {
-      if (e.target.tagName === "IMG" && e.button === 2) {
-        e.preventDefault();
-      }
-    });
   </script>
 
 </body>
