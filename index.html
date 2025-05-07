@@ -213,12 +213,12 @@
       const seconds = String(now.getSeconds()).padStart(2, '0');
       document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
 
-      // Ish vaqti tekshirish
       const start = new Date();
       start.setHours(18, 30, 0, 0);
       const end = new Date();
       end.setHours(2, 0, 0, 0);
       if (now.getHours() < 12) end.setDate(end.getDate() + 1);
+
       const isOpen = (now >= start || now <= end);
       document.getElementById("status").innerHTML = isOpen
         ? "<span style='color:green;'>📢 Ish olib borilmoqda</span>"
@@ -237,9 +237,9 @@
       if (now.getHours() < 12) end.setDate(end.getDate() + 1);
 
       if (now >= start || now <= end) {
-        alert('Buyurtmangiz qabul qilindi!');
+        window.location.href = "/html/order.html";
       } else {
-        alert('⚠️ Hozir ish vaqti emas.');
+        alert('⚠️ Hozir ish vaqti emas. Iltimos, 18:30 dan 02:00 gacha buyurtma bering.');
       }
     }
 
