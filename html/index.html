@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dizayn Buyurtma</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(to bottom, #0066ff, #feb47b);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      position: relative;
+      color: #333;
+      text-align: center;
+    }
+
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(45deg, red, green, blue, yellow, purple);
+      background-size: 400% 400%;
+      animation: gradientAnimation 10s infinite;
+    }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .wrapper {
+      padding: 40px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: blue; /* Gradient o‘rniga oddiy rang */
+  text-decoration: none; /* pastki chiziq yo‘q */
+}
+
+    .button-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .button {
+      width: 220px;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border: 2px solid #ff7e5f;
+      border-radius: 10px;
+      background-color: transparent;
+      color: #ff7e5f;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .button:hover {
+      background-color: #ff7e5f;
+      color: white;
+    }
+
+    .icon {
+      margin-right: 6px;
+    }
+
+    /* Yordam tugmasi */
+    .help-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+      background-color: #007bff;
+      color: white;
+      font-size: 24px;
+      border: none;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    .help-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Modal oynasi */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(3px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 300px;
+      width: 80%;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      animation: slideUp 0.4s ease;
+      position: relative;
+    }
+
+    .modal-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #007bff;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      color: #888;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+
+    .modal-content h2 {
+      margin: 10px 0 5px;
+    }
+
+    .modal-content p {
+      font-size: 16px;
+      color: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-animation"></div>
+
+  <!-- Yordam tugmasi -->
+  <button onclick="openHelp()" class="help-btn">❓</button>
+
+  <!-- Modal oynasi -->
+  <div id="helpModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeHelp()">✖</span>
+      <img src="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" alt="Logo" class="modal-logo" />
+      <h2>Elbek Qoriyev</h2>
+      <p>+998 90 406 30 90</p>
+    </div>
+  </div>
+
+  <!-- Asosiy kontent -->
+  <div class="wrapper">
+    <h1>Elbek Design</h1>
+    <div class="button-container">
+      <a href="/html/byqan.html" class="button"><span class="icon">📄</span>Buyurtma qanday beriladi?</a>
+      <a href="/html/order.html" class="button"><span class="icon">📝</span>Buyurtma berish</a>
+    </div>
+  </div>
+
+  <script>
+    function openHelp() {
+      document.getElementById("helpModal").style.display = "flex";
+    }
+
+    function closeHelp() {
+      document.getElementById("helpModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

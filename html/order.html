@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elbek-Design</title>
+  <style>
+    :root {
+      --bg-color: #f0f0f0;
+      --text-color: #333;
+      --container-bg: #fff;
+      --button-bg: #007bff;
+      --button-hover-bg: #0056b3;
+      --delete-btn-bg: #dc3545;
+      --delete-btn-hover-bg: #c82333;
+      --success-bg: #28a745;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --container-bg: #1e1e1e;
+      --button-bg: #1a73e8;
+      --button-hover-bg: #135ab6;
+      --delete-btn-bg: #b00020;
+      --delete-btn-hover-bg: #8c0018;
+      --success-bg: #388e3c;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      background: var(--container-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      animation: slideIn 1.5s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      background: var(--container-bg);
+      color: var(--text-color);
+    }
+
+    .phone-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .phone-group select {
+      width: 35%;
+    }
+
+    .phone-group input {
+      width: 65%;
+    }
+
+    .gender-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .dob-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .dob-group input {
+      width: 30%;
+    }
+
+    .age-group {
+      margin-top: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      background: var(--button-bg);
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--button-hover-bg);
+    }
+
+    .delete-btn {
+      background: var(--delete-btn-bg);
+    }
+
+    .delete-btn:hover {
+      background: var(--delete-btn-hover-bg);
+    }
+
+    .success {
+      background: var(--success-bg);
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    .error {
+      background: #ff6666;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-align: center;
+      display: none;
+    }
+
+    #price {
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      select, input, textarea {
+        font-size: 12px;
+      }
+
+      button {
+        font-size: 12px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🎨 Dizayn Buyurtma Formasi</h2>
+
+    <p><strong>Foydalanuvchi:</strong> <span id="userDisplay"></span></p>
+
+    <label for="email">Elektron pochta:</label>
+    <input type="email" id="email" placeholder="example@gmail.com" required />
+
+    <label for="telegram">Telegram Username:</label>
+    <input type="text" id="telegram" placeholder="Telegram username (@username)" />
+
+    <label for="phone">Telefon raqami:</label>
+    <div class="phone-group">
+      <select id="country" onchange="updatePhonePrefix()" required>
+        <option value="+998">🇺🇿 +998</option>
+        <option value="+7">🇷🇺 +7</option>
+      </select>
+      <input type="tel" id="phone" placeholder="901234567" required />
+    </div>
+
+    <div class="gender-group">
+      <label for="gender">Jinsini tanlang:</label>
+      <input type="radio" id="male" name="gender" value="Erkak" required /> Erkak
+      <input type="radio" id="female" name="gender" value="Ayol" required /> Ayol
+    </div>
+
+    <div class="dob-group">
+      <label for="dob-day">Tug'ilgan kun:</label>
+      <input type="number" id="dob-day" placeholder="Kun" min="1" max="31" required />
+      <input type="number" id="dob-month" placeholder="Oy" min="1" max="12" required />
+      <input type="number" id="dob-year" placeholder="Yil" min="1900" max="2025" required />
+    </div>
+
+    <div class="age-group">
+      <label for="age">Yoshingiz:</label>
+      <input type="number" id="age" placeholder="Yoshingizni kiriting" min="1" max="120" required />
+    </div>
+
+    <label for="game">O‘yin tanlang:</label>
+    <select id="game" required>
+      <option value="PUBG">🎮 PUBG</option>
+      <option value="Free Fire">🔥 Free Fire</option>
+      <option value="Call of Duty">⚔️ Call of Duty</option>
+      <option value="Minecraft">⛏ Minecraft</option>
+      <option value="Valorant">🎯 Valorant</option>
+      <option value="Resident Evil">🧟‍♂️ Resident Evil</option>
+      <option value="Silent Hill">🌫 Silent Hill</option>
+      <option value="Amnesia">😱 Amnesia</option>
+      <option value="Outlast">💀 Outlast</option>
+    </select>
+
+    <label for="type">Dizayn turi:</label>
+    <select id="type" required onchange="updatePrice()">
+      <option value="">-- Tanlang --</option>
+      <option value="Prevyou">📺 Prevyou</option>
+      <option value="Banner">🖼 Banner</option>
+      <option value="Avatarka">👤 Avatarka</option>
+      <option value="Logo">🎨 Logo</option>
+    </select>
+
+    <div id="price"></div>
+
+    <label for="comment">Qo‘shimcha izoh:</label>
+    <textarea id="comment" rows="4" placeholder="Masalan: O‘yinchi nomi, ranglar, yozuv..." required></textarea>
+
+    <button onclick="sendOrder()">📩 Buyurtma berish</button>
+    <button class="delete-btn" onclick="deleteAccount()">❌ Akkauntni o'chirish</button>
+
+    <div class="success" id="successMessage">✅ Buyurtma muvaffaqiyatli yuborildi!</div>
+    <div class="error" id="errorMessage">❌ Xatolik yuz berdi!</div>
+  </div>
+
+  <script>
+    const user = localStorage.getItem('user');
+    if (!user) {
+      alert("Iltimos, avval ro'yxatdan o'ting!");
+      window.location.href = "register.html";
+    } else {
+      document.getElementById("userDisplay").textContent = user;
+    }
+
+    const priceMap = {
+      "Prevyou": 25000,
+      "Banner": 15000,
+      "Avatarka": 10000,
+      "Logo": 15000
+    };
+
+    function updatePrice() {
+      const designType = document.getElementById("type").value;
+      const priceDiv = document.getElementById("price");
+      const price = priceMap[designType] || 0;
+
+      if (price > 0) {
+        priceDiv.innerText = `Narxi: ${price.toLocaleString()} so'm`;
+      } else {
+        priceDiv.innerText = "";
+      }
+    }
+
+    function updatePhonePrefix() {
+      const countryCode = document.getElementById("country").value;
+      const phoneInput = document.getElementById("phone");
+      phoneInput.value = countryCode === "+7" ? "701234567" : "901234567";
+    }
+
+    async function sendOrder() {
+      const email = document.getElementById("email").value.trim();
+      const telegram = document.getElementById("telegram").value.trim();
+      const country = document.getElementById("country").value;
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const day = document.getElementById("dob-day").value.trim();
+      const month = document.getElementById("dob-month").value.trim();
+      const year = document.getElementById("dob-year").value.trim();
+      const age = document.getElementById("age").value.trim();
+      const game = document.getElementById("game").value;
+      const type = document.getElementById("type").value;
+      const comment = document.getElementById("comment").value.trim();
+      const price = priceMap[type] || 0; // Narxni olish
+
+      if (email && phone && gender && day && month && year && age && game && type && comment) {
+        const fullPhone = `${country} ${phone}`;
+        const dob = `${day}-${month}-${year}`;
+        const message = `
+🖌 *Yangi Dizayn Buyurtmasi* 🎨
+
+👤 *Foydalanuvchi:* ${user}
+📧 *Email:* ${email}
+📱 *Telefon:* ${fullPhone}
+📲 *Telegram Username:* ${telegram ? `@${telegram}` : 'N/A'}
+🚻 *Jinsi:* ${gender}
+🎂 *Tug‘ilgan sana:* ${dob}
+🔢 *Yosh:* ${age}
+🎮 *O‘yin:* ${game}
+🎨 *Dizayn turi:* ${type}
+💰 *Narxi:* ${price.toLocaleString()} so'm
+📝 *Izoh:* ${comment}
+        `.trim();
+
+        const token = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc";
+        const chatId = "7833115003";
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          });
+
+          if (response.ok) {
+            document.getElementById("successMessage").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("successMessage").style.display = "none";
+            }, 3000);
+          } else {
+            document.getElementById("errorMessage").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("errorMessage").style.display = "none";
+            }, 3000);
+            console.error('Xatolik:', response.status);
+          }
+        } catch (error) {
+          document.getElementById("errorMessage").style.display = "block";
+          setTimeout(() => {
+            document.getElementById("errorMessage").style.display = "none";
+          }, 3000);
+          console.error('Xatolik:', error);
+        }
+
+      } else {
+        alert("Iltimos, barcha maydonlarni to‘ldiring!");
+      }
+    }
+
+    async function deleteAccount() {
+      if (confirm("Akkauntingizni o'chirishni xohlaysizmi?")) {
+        localStorage.removeItem("user");
+        alert("Akkauntingiz muvaffaqiyatli o'chirildi!");
+
+        // Telegram botga xabar yuborish
+        const message = `🚨 *Akkaunt o'chirildi* ❌
+
+👤 *Foydalanuvchi:* ${user} 
+Status: Akkaunti o'chirildi.`;
+
+        const token = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc";
+        const chatId = "7833115003";
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          });
+
+          if (response.ok) {
+            // Xabar muvaffaqiyatli yuborildi
+          } else {
+            console.error('Telegramga xabar yuborishda xatolik:', response.status);
+          }
+        } catch (error) {
+          console.error('Telegramga xabar yuborishda xatolik:', error);
+        }
+
+        window.location.href = "register.html"; // Registratsiya sahifasiga yo'naltirish
+      }
+    }
+  </script>
+</body>
+</html>
