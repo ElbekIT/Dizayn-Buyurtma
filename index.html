@@ -7,11 +7,7 @@
   <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       height: 100vh;
@@ -24,6 +20,10 @@
       position: relative;
       color: #333;
       text-align: center;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
 
     .background-animation {
@@ -53,11 +53,11 @@
     }
 
     h1 {
-  font-size: 36px;
-  margin-bottom: 30px;
-  color: blue; /* Gradient o‘rniga oddiy rang */
-  text-decoration: none; /* pastki chiziq yo‘q */
-}
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: blue;
+      text-decoration: none;
+    }
 
     .button-container {
       display: flex;
@@ -86,11 +86,8 @@
       color: white;
     }
 
-    .icon {
-      margin-right: 6px;
-    }
+    .icon { margin-right: 6px; }
 
-    /* Yordam tugmasi */
     .help-btn {
       position: fixed;
       bottom: 20px;
@@ -108,19 +105,8 @@
       transition: background 0.3s;
     }
 
-    .help-btn:hover {
-      background-color: #0056b3;
-    }
+    .help-btn:hover { background-color: #0056b3; }
 
-
-    body {
-  -webkit-user-select: none; /* Chrome, Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE10+ */
-  user-select: none;         /* Standard */
-}
-
-    /* Modal oynasi */
     .modal-overlay {
       display: none;
       position: fixed;
@@ -167,18 +153,10 @@
       transition: color 0.3s;
     }
 
-    .close-btn:hover {
-      color: #000;
-    }
+    .close-btn:hover { color: #000; }
 
-    .modal-content h2 {
-      margin: 10px 0 5px;
-    }
-
-    .modal-content p {
-      font-size: 16px;
-      color: #333;
-    }
+    .modal-content h2 { margin: 10px 0 5px; }
+    .modal-content p { font-size: 16px; color: #333; }
 
     @keyframes fadeIn {
       from { opacity: 0; }
@@ -189,25 +167,29 @@
       from { transform: translateY(50px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
-  </style>
 
-  <!-- himoya uchun css -->
-  <style>
-    body {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+    .work-hours {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 8px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+      z-index: 999;
     }
-    </style>
-    <!-- himoya uchun css -->
-  
+  </style>
 </head>
 <body>
-  
-  <div class="background-animation"></div>
 
-  <!-- Yordam tugmasi -->
+  <!-- Ish vaqti banneri -->
+  <div class="work-hours">🕒 Ish vaqti: 09:00 - 18:00 (Dushanba - Shanba)</div>
+
+  <div class="background-animation"></div>
   <button onclick="openHelp()" class="help-btn">❓</button>
 
   <!-- Modal oynasi -->
@@ -220,12 +202,11 @@
     </div>
   </div>
 
-  <!-- Asosiy kontent -->
   <div class="wrapper">
     <h1>Elbek Design</h1>
     <div class="button-container">
       <a href="/html/byqan.html" class="button"><span class="icon">📄</span>Buyurtma qanday beriladi?</a>
-      <a href="/html/order.html" class="button"><span class="icon">📝</span>Buyurtma berish</a>
+      <a href="#" class="button" onclick="checkWorkHours(event)"><span class="icon">📝</span>Buyurtma berish</a>
     </div>
   </div>
 
@@ -237,56 +218,44 @@
     function closeHelp() {
       document.getElementById("helpModal").style.display = "none";
     }
+
+    function checkWorkHours(e) {
+      const now = new Date();
+      const day = now.getDay(); // Yakshanba = 0, Dushanba = 1, ...
+      const hour = now.getHours();
+
+      // Dushanba (1) dan Shanba (6) gacha, soat 9:00 - 18:00 oralig'ida bo‘lsa
+      if (day >= 1 && day <= 6 && hour >= 9 && hour < 18) {
+        window.location.href = "/html/order.html";
+      } else {
+        alert("❌ Hozir ish vaqti emas. Iltimos, 09:00 - 18:00 orasida qaytadan urinib ko‘ring.");
+        e.preventDefault();
+      }
+    }
+
+    // Xavfsizlik bloklari
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+      if (
+        (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        alert("Bu amal bloklangan!");
+      }
+    });
+    document.addEventListener('selectstart', e => e.preventDefault());
+    document.addEventListener('copy', e => {
+      e.preventDefault();
+      alert("Nusxa olish mumkin emas!");
+    });
+    document.addEventListener("mousedown", function (e) {
+      if (e.target.tagName === "IMG" && e.button === 2) {
+        e.preventDefault();
+      }
+    });
   </script>
-
-<script>
-  // Sichqonchaning o'ng tugmasini bloklash
-  document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
-
-  // Klaviatura tugmalarini bloklash
-  document.addEventListener('keydown', function(e) {
-    // Ctrl + U, Ctrl + C, Ctrl + S, Ctrl + P, F12, Ctrl+Shift+I
-    if (
-      (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
-      (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
-      e.key === 'F12'
-    ) {
-      e.preventDefault();
-      alert("Bu amal bloklangan!");
-    }
-  });
-
-  // Matnni tanlashni bloklash
-  document.addEventListener('selectstart', function(e) {
-    e.preventDefault();
-  });
-
-  // Nusxa olishni bloklash
-  document.addEventListener('copy', function(e) {
-    e.preventDefault();
-    alert("Nusxa olish mumkin emas!");
-  });
-
-  // Rasmni saqlashga urinishda to‘siq
-  document.addEventListener("mousedown", function (e) {
-    if (e.target.tagName === "IMG" && e.button === 2) {
-      e.preventDefault();
-    }
-  });
-
-  // Sayt kodini ko‘rishga urinishni aniqlash
-  document.onkeydown = function(e) {
-    if (
-      e.keyCode === 123 || // F12
-      (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
-      (e.ctrlKey && e.keyCode === 85) // Ctrl+U
-    ) {
-      return false;
-    }
-  };
-</script>
 
 </body>
 </html>
