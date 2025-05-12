@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elbek-Design</title>
   <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
-  <style>
-    
+<style>
     :root {
       --bg-color: #f0f0f0;
       --text-color: #333;
@@ -39,6 +38,10 @@
       align-items: center;
       min-height: 100vh;
       animation: fadeIn 1.5s ease-in-out;
+      -webkit-user-select: none; /* Chrome, Safari */
+      -moz-user-select: none;    /* Firefox */
+      -ms-user-select: none;     /* IE10+ */
+      user-select: none;         /* Standard */
     }
 
     @keyframes fadeIn {
@@ -73,10 +76,6 @@
       font-weight: bold;
     }
 
-
-
-
-    
     select, input, textarea {
       width: 100%;
       padding: 8px;
@@ -147,15 +146,6 @@
       background: var(--delete-btn-hover-bg);
     }
 
-
-    body {
-  -webkit-user-select: none; /* Chrome, Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE10+ */
-  user-select: none;         /* Standard */
-}
-
-
     .success {
       background: var(--success-bg);
       color: #fff;
@@ -201,14 +191,7 @@
       }
     }
   </style>
-  <style>
-    body {
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-  </style>
+
   
 </head>
 <body>
