@@ -2,115 +2,101 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Elbek Design</title>
-  <link rel="icon" href="/img/logo.png" type="image/png" />
+  <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
 
     body {
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(to bottom, #0066ff, #feb47b);
-      height: 100vh;
-      overflow: hidden;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      position: relative;
+      align-items: center;
+      padding: 20px;
     }
 
-    .background-animation {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -1;
-      background: linear-gradient(45deg, red, green, blue, yellow, purple);
-      background-size: 400% 400%;
-      animation: gradientAnimation 12s infinite;
-    }
-
-    @keyframes gradientAnimation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      max-width: 600px;
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px 20px;
       width: 100%;
+      max-width: 420px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: slideIn 1.2s ease-in-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     h1 {
-      font-size: 32px;
-      color: #0066ff;
+      font-size: 30px;
       margin-bottom: 20px;
+      color: #00d9ff;
     }
 
-    .time-box {
-      background: #f7f7f7;
-      border-radius: 10px;
-      padding: 15px;
+    .info {
       margin-bottom: 25px;
-      animation: floatUp 2s ease-in-out infinite alternate;
     }
 
-    @keyframes floatUp {
-      from { transform: translateY(0); }
-      to { transform: translateY(-10px); }
+    .info p {
+      margin: 6px 0;
+      font-size: 16px;
     }
 
-    .time-box h2 {
-      font-size: 18px;
-      margin: 10px 0 5px;
+    .status {
+      font-weight: bold;
+      margin-top: 15px;
     }
 
-    .alert { color: red; font-weight: bold; }
-
-    .status { font-weight: bold; margin-top: 10px; }
-
-    .button-container {
+    .btn-group {
       display: flex;
-      justify-content: center;
-      gap: 15px;
+      gap: 10px;
       flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 20px;
     }
 
-    .button {
-      padding: 12px 25px;
-      border: 2px solid #ff7e5f;
+    .btn {
+      padding: 12px 20px;
+      border: 2px solid #00d9ff;
       border-radius: 10px;
-      background-color: transparent;
-      color: #ff7e5f;
+      background: transparent;
+      color: #00d9ff;
       font-weight: bold;
       cursor: pointer;
-      text-decoration: none;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      font-size: 14px;
     }
 
-    .button:hover {
-      background-color: #ff7e5f;
-      color: white;
+    .btn:hover {
+      background: #00d9ff;
+      color: #000;
     }
 
     .help-btn {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background: #007bff;
-      color: white;
       width: 50px;
       height: 50px;
-      font-size: 24px;
+      background: #00d9ff;
       border-radius: 50%;
       border: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      font-size: 22px;
+      color: #000;
       cursor: pointer;
+      box-shadow: 0 0 15px #00d9ff80;
     }
 
     .modal-overlay {
@@ -119,81 +105,80 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(3px);
-      align-items: center;
+      backdrop-filter: blur(5px);
       justify-content: center;
-      z-index: 1000;
+      align-items: center;
+      z-index: 999;
     }
 
-    .modal-content {
+    .modal {
       background: white;
-      padding: 25px;
+      padding: 30px;
       border-radius: 15px;
       text-align: center;
       max-width: 300px;
-      animation: slideUp 0.3s ease;
+      color: #333;
       position: relative;
     }
 
-    .modal-logo {
-      width: 70px;
-      height: 70px;
+    .modal img {
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       margin-bottom: 10px;
-      border: 2px solid #007bff;
     }
 
     .close-btn {
       position: absolute;
       top: 10px;
       right: 15px;
-      font-size: 22px;
-      color: #777;
+      font-size: 20px;
+      color: #555;
       cursor: pointer;
     }
 
-    @keyframes slideUp {
-      from { transform: translateY(30px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 24px;
+      }
 
-    @media(max-width: 500px) {
-      h1 { font-size: 26px; }
-      .button { width: 100%; }
+      .btn {
+        font-size: 13px;
+        padding: 10px 15px;
+      }
+
+      .modal {
+        width: 90%;
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="background-animation"></div>
-
-  <div class="container">
+  <div class="card">
     <h1>Elbek Design</h1>
-
-    <div class="time-box">
-      <h2>📆 Bugungi sana:</h2>
+    <div class="info">
       <p id="date"></p>
-      <h2>🕒 Hozirgi vaqt:</h2>
       <p id="time"></p>
-      <h2>💼 Ish vaqti: 07:00 – 01:00</h2>
-      <p id="status" class="status"></p>
+      <p>💼 Ish vaqti: 07:00 – 01:00</p>
+      <p class="status" id="status"></p>
     </div>
-
-    <div class="button-container">
-      <a href="/html/byqan.html" class="button">📄 Buyurtma qanday beriladi?</a>
-      <button class="button" onclick="checkOrderTime()">📝 Buyurtma berish</button>
+    <div class="btn-group">
+      <a href="/html/byqan.html" class="btn">📄 Qanday buyurtma beriladi?</a>
+      <button class="btn" onclick="checkOrderTime()">📝 Buyurtma berish</button>
     </div>
   </div>
 
   <!-- Yordam tugmasi -->
-  <button onclick="openHelp()" class="help-btn">❓</button>
+  <button class="help-btn" onclick="openHelp()">❓</button>
 
   <!-- Modal -->
-  <div id="helpModal" class="modal-overlay">
-    <div class="modal-content">
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal">
       <span class="close-btn" onclick="closeHelp()">✖</span>
-      <img src="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" alt="Logo" class="modal-logo" />
-      <h2>Elbek Qoriyev</h2>
+      <img src="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" alt="Logo" />
+      <h3>Elbek Qoriyev</h3>
       <p>📞 +998 90 406 30 90</p>
     </div>
   </div>
@@ -206,21 +191,21 @@
       const date = String(now.getDate()).padStart(2, '0');
       const month = String(now.getMonth() + 1).padStart(2, '0');
       const year = now.getFullYear();
-      document.getElementById("date").textContent = `${day}, ${date}.${month}.${year}`;
+      document.getElementById("date").textContent = `📆 ${day}, ${date}.${month}.${year}`;
 
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
-      document.getElementById("time").textContent = `${hours}:${minutes}:${seconds}`;
+      document.getElementById("time").textContent = `🕒 ${hours}:${minutes}:${seconds}`;
 
       const nowTime = now.getHours() * 60 + now.getMinutes();
-      const start = 7 * 60;    // 07:00 = 420
-      const end = 1 * 60;      // 01:00 = 60
+      const start = 7 * 60;
+      const end = 1 * 60;
 
       const isOpen = nowTime >= start || nowTime < end;
       document.getElementById("status").innerHTML = isOpen
-        ? "<span style='color:green;'>📢 Ish olib borilmoqda</span>"
-        : "<span class='alert'>⚠️ Hozir ish vaqti emas</span>";
+        ? "📢 <span style='color:limegreen'>Ish olib borilmoqda</span>"
+        : "⚠️ <span style='color:red'>Hozir ish vaqti emas</span>";
     }
 
     setInterval(updateTime, 1000);
@@ -229,13 +214,13 @@
     function checkOrderTime() {
       const now = new Date();
       const nowTime = now.getHours() * 60 + now.getMinutes();
-      const start = 7 * 60;    // 07:00 = 420
-      const end = 1 * 60;      // 01:00 = 60
+      const start = 7 * 60;
+      const end = 1 * 60;
 
       if (nowTime >= start || nowTime < end) {
         window.location.href = "/html/order.html";
       } else {
-        alert('⚠️ Hozir ish vaqti emas. Iltimos, 07:00 dan 01:00 gacha buyurtma bering.');
+        alert("⚠️ Hozir ish vaqti emas. Buyurtma berish uchun 07:00 dan 01:00 gacha kuting.");
       }
     }
 
