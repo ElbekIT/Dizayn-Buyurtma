@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elbek-Design</title>
+  <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
+<style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      --container-bg: rgba(255,255,255,0.95);
+      --container-bg-dark: rgba(30,30,30,0.98);
+      --text-color: #222;
+      --text-color-dark: #f1f1f1;
+      --input-bg: #f7f7fa;
+      --input-bg-dark: #23232b;
+      --input-border: #d1d1e0;
+      --input-border-dark: #444;
+      --button-bg: #2575fc;
+      --button-hover-bg: #6a11cb;
+      --delete-btn-bg: #ff4d4f;
+      --delete-btn-hover-bg: #b71c1c;
+      --success-bg: #43e97b;
+      --error-bg: #ff4d4f;
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    }
+
+    [data-theme="dark"] {
+      --bg-gradient: linear-gradient(135deg, #232526 0%, #414345 100%);
+      --container-bg: var(--container-bg-dark);
+      --text-color: var(--text-color-dark);
+      --input-bg: var(--input-bg-dark);
+      --input-border: var(--input-border-dark);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: bodyFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+      overflow-x: hidden;
+    }
+
+    @keyframes bodyFadeIn {
+      from { opacity: 0; filter: blur(8px);}
+      to { opacity: 1; filter: blur(0);}
+    }
+
+    .container {
+      background: var(--container-bg);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 32px 28px;
+      width: 100%;
+      max-width: 420px;
+      animation: containerPop 1.1s cubic-bezier(.68,-0.55,.27,1.55);
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+    }
+
+    @keyframes containerPop {
+      0% { transform: scale(0.85) translateY(60px); opacity: 0;}
+      60% { transform: scale(1.05) translateY(-10px);}
+      100% { transform: scale(1) translateY(0); opacity: 1;}
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      color: var(--button-bg);
+      animation: fadeInDown 1s .2s both;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    label {
+      display: block;
+      margin-top: 16px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      color: var(--text-color);
+      animation: fadeInLeft .7s both;
+    }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px);}
+      to { opacity: 1; transform: translateX(0);}
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 7px;
+      border-radius: 8px;
+      border: 1.5px solid var(--input-border);
+      background: var(--input-bg);
+      color: var(--text-color);
+      font-size: 1rem;
+      transition: border .25s, box-shadow .25s;
+      outline: none;
+      margin-bottom: 2px;
+      box-sizing: border-box;
+      animation: fadeInRight .7s both;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--button-bg);
+      box-shadow: 0 0 0 2px #2575fc33;
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px);}
+      to { opacity: 1; transform: translateX(0);}
+    }
+
+    .phone-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 7px;
+    }
+
+    .phone-group select {
+      width: 38%;
+      min-width: 90px;
+    }
+
+    .phone-group input {
+      width: 62%;
+    }
+
+    .gender-group {
+      display: flex;
+      gap: 18px;
+      margin-top: 14px;
+      align-items: center;
+      animation: fadeInLeft .7s both;
+    }
+
+    .gender-group input[type="radio"] {
+      accent-color: var(--button-bg);
+      margin-right: 3px;
+    }
+
+    .dob-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .dob-group input {
+      width: 33%;
+    }
+
+    .age-group {
+      margin-top: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 18px;
+      background: var(--button-bg);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.08rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #2575fc22;
+      transition: background .25s, transform .15s, box-shadow .25s;
+      animation: buttonPop .8s .2s both;
+    }
+
+    @keyframes buttonPop {
+      from { opacity: 0; transform: scale(0.9);}
+      to { opacity: 1; transform: scale(1);}
+    }
+
+    button:hover, button:focus {
+      background: var(--button-hover-bg);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 4px 16px #6a11cb33;
+    }
+
+    .delete-btn {
+      background: var(--delete-btn-bg);
+      margin-top: 10px;
+      box-shadow: 0 2px 8px #ff4d4f22;
+    }
+
+    .delete-btn:hover, .delete-btn:focus {
+      background: var(--delete-btn-hover-bg);
+      box-shadow: 0 4px 16px #b71c1c33;
+    }
+
+    .success, .error {
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 14px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1rem;
+      display: none;
+      animation: fadeInUp .7s both;
+    }
+
+    .success {
+      background: var(--success-bg);
+      color: #fff;
+      box-shadow: 0 2px 8px #43e97b33;
+    }
+
+    .error {
+      background: var(--error-bg);
+      color: #fff;
+      box-shadow: 0 2px 8px #ff4d4f33;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    #price {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #1bc47d;
+      font-size: 1.08rem;
+      letter-spacing: .5px;
+      animation: fadeIn .7s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0;}
+      to { opacity: 1;}
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .container {
+        padding: 18px 6vw;
+        border-radius: 14px;
+        max-width: 98vw;
+        min-width: 0;
+      }
+      h2 {
+        font-size: 1.1rem;
+      }
+      label, input, select, textarea, button {
+        font-size: 0.97rem;
+      }
+      button {
+        padding: 10px;
+      }
+      .phone-group select, .phone-group input, .dob-group input {
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Floating animation for container */
+    .container {
+      animation: floatUp 2.5s cubic-bezier(.68,-0.55,.27,1.55) 0s 1;
+    }
+    @keyframes floatUp {
+      0% { box-shadow: 0 0 0 0 rgba(31,38,135,0.0);}
+      60% { box-shadow: 0 8px 32px 0 rgba(31,38,135,0.18);}
+      100% { box-shadow: var(--shadow);}
+    }
+
+    /* Animated border for container */
+    .container::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 28px;
+      z-index: -1;
+      background: linear-gradient(120deg, #6a11cb, #2575fc, #43e97b, #38f9d7, #6a11cb);
+      background-size: 400% 400%;
+      animation: borderAnim 8s ease-in-out infinite;
+      filter: blur(2px);
+      opacity: 0.7;
+    }
+    @keyframes borderAnim {
+      0% { background-position: 0% 50%;}
+      50% { background-position: 100% 50%;}
+      100% { background-position: 0% 50%;}
+    }
+
+    /* Animate input focus */
+    input:focus, select:focus, textarea:focus {
+      animation: inputPulse .5s;
+    }
+    @keyframes inputPulse {
+      0% { box-shadow: 0 0 0 0 #2575fc44;}
+      70% { box-shadow: 0 0 0 6px #2575fc22;}
+      100% { box-shadow: 0 0 0 2px #2575fc33;}
+    }
+  </style>
+
+  
+</head>
+<body>
+
+
+
+
+  
+  <div class="container">
+    <h2>🎨 Dizayn Buyurtma Formasi</h2>
+
+    <p><strong>Foydalanuvchi:</strong> <span id="userDisplay"></span></p>
+
+    <label for="email">Elektron pochta:</label>
+    <input type="email" id="email" placeholder="example@gmail.com" required />
+
+    <label for="telegram">Telegram Username:</label>
+    <input type="text" id="telegram" placeholder="Telegram username (@username)" />
+
+    <label for="phone">Telefon raqami:</label>
+    <div class="phone-group">
+      <select id="country" onchange="updatePhonePrefix()" required>
+        <option value="+998">🇺🇿 +998</option>
+        <option value="+7">🇷🇺 +7</option>
+      </select>
+      <input type="tel" id="phone" placeholder="901234567" required />
+    </div>
+
+    <div class="gender-group">
+      <label for="gender">Jinsini tanlang:</label>
+      <input type="radio" id="male" name="gender" value="Erkak" required /> Erkak
+      <input type="radio" id="female" name="gender" value="Ayol" required /> Ayol
+    </div>
+
+    <div class="dob-group">
+      <label for="dob-day">Tug'ilgan kun:</label>
+      <input type="number" id="dob-day" placeholder="Kun" min="1" max="31" required />
+      <input type="number" id="dob-month" placeholder="Oy" min="1" max="12" required />
+      <input type="number" id="dob-year" placeholder="Yil" min="1900" max="2025" required />
+    </div>
+
+    <div class="age-group">
+      <label for="age">Yoshingiz:</label>
+      <input type="number" id="age" placeholder="Yoshingizni kiriting" min="1" max="120" required />
+    </div>
+
+    <label for="game">O‘yin yoki ijtimoiy tarmoq tanlang:</label>
+    <select id="game" required>
+      <option value="PUBG">🎮 PUBG</option>
+      <option value="PUBG">📢 Telegram</option>
+      <option value="CSGO 2">💣 CSGO 2</option>
+      <option value="DOTA 2">💎 DOTA 2</option>
+      <option value="Free Fire">🔥 Free Fire</option>
+      <option value="Call of Duty">⚔️ Call of Duty</option>
+      <option value="Minecraft">⛏ Minecraft</option>
+      <option value="Valorant">🎯 Valorant</option>
+      <option value="Resident Evil">🧟‍♂️ Resident Evil</option>
+      <option value="Silent Hill">🌫 Silent Hill</option>
+      <option value="Amnesia">😱 Amnesia</option>
+      <option value="Outlast">💀 Outlast</option>
+    </select>
+
+    <label for="type">Dizayn turi:</label>
+    <select id="type" required onchange="updatePrice()">
+      <option value="">-- Tanlang --</option>
+      <option value="Prevyou">📺 Prevyou</option>
+      <option value="Banner">🖼 Banner</option>
+      <option value="Avatarka">👤 Avatarka</option>
+      <option value="Logo">🎨 Logo</option>
+    </select>
+
+    <div id="price"></div>
+
+    <label for="comment">Qo‘shimcha izoh:</label>
+    <textarea id="comment" rows="4" placeholder="Masalan: O‘yinchi nomi, ranglar, yozuv..." required></textarea>
+
+    <button onclick="sendOrder()">📩 Buyurtma berish</button>
+    <button class="delete-btn" onclick="deleteAccount()">❌ Akkauntni o'chirish</button>
+
+    <div class="success" id="successMessage">✅ Buyurtma muvaffaqiyatli yuborildi!</div>
+    <div class="error" id="errorMessage">❌ Xatolik yuz berdi!</div>
+  </div>
+
+  <script>
+    const user = localStorage.getItem('user');
+    if (!user) {
+      alert("Iltimos, avval ro'yxatdan o'ting!");
+      window.location.href = "register.html";
+    } else {
+      document.getElementById("userDisplay").textContent = user;
+    }
+
+    const priceMap = {
+      "Prevyou": 25000,
+      "Banner": 15000,
+      "Avatarka": 10000,
+      "Logo": 15000
+    };
+
+    function updatePrice() {
+      const designType = document.getElementById("type").value;
+      const priceDiv = document.getElementById("price");
+      const price = priceMap[designType] || 0;
+
+      if (price > 0) {
+        priceDiv.innerText = `Narxi: ${price.toLocaleString()} so'm`;
+      } else {
+        priceDiv.innerText = "";
+      }
+    }
+
+    function updatePhonePrefix() {
+      const countryCode = document.getElementById("country").value;
+      const phoneInput = document.getElementById("phone");
+      phoneInput.value = countryCode === "+7" ? "701234567" : "901234567";
+    }
+
+    async function sendOrder() {
+      const email = document.getElementById("email").value.trim();
+      const telegram = document.getElementById("telegram").value.trim();
+      const country = document.getElementById("country").value;
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const day = document.getElementById("dob-day").value.trim();
+      const month = document.getElementById("dob-month").value.trim();
+      const year = document.getElementById("dob-year").value.trim();
+      const age = document.getElementById("age").value.trim();
+      const game = document.getElementById("game").value;
+      const type = document.getElementById("type").value;
+      const comment = document.getElementById("comment").value.trim();
+      const price = priceMap[type] || 0; // Narxni olish
+
+      if (email && phone && gender && day && month && year && age && game && type && comment) {
+        const fullPhone = `${country} ${phone}`;
+        const dob = `${day}-${month}-${year}`;
+        const message = `
+🖌 *Yangi Dizayn Buyurtmasi* 🎨
+
+👤 *Foydalanuvchi:* ${user}
+📧 *Email:* ${email}
+📱 *Telefon:* ${fullPhone}
+📲 *Telegram Username:* ${telegram ? `@${telegram}` : 'N/A'}
+🚻 *Jinsi:* ${gender}
+🎂 *Tug‘ilgan sana:* ${dob}
+🔢 *Yosh:* ${age}
+🎮 *O‘yin:* ${game}
+🎨 *Dizayn turi:* ${type}
+💰 *Narxi:* ${price.toLocaleString()} so'm
+📝 *Izoh:* ${comment}
+        `.trim();
+
+        const token = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc";
+        const chatId = "7833115003";
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          });
+
+          if (response.ok) {
+            document.getElementById("successMessage").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("successMessage").style.display = "none";
+            }, 3000);
+          } else {
+            document.getElementById("errorMessage").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("errorMessage").style.display = "none";
+            }, 3000);
+            console.error('Xatolik:', response.status);
+          }
+        } catch (error) {
+          document.getElementById("errorMessage").style.display = "block";
+          setTimeout(() => {
+            document.getElementById("errorMessage").style.display = "none";
+          }, 3000);
+          console.error('Xatolik:', error);
+        }
+
+      } else {
+        alert("Iltimos, barcha maydonlarni to‘ldiring!");
+      }
+    }
+
+    async function deleteAccount() {
+      if (confirm("Akkauntingizni o'chirishni xohlaysizmi?")) {
+        localStorage.removeItem("user");
+        alert("Akkauntingiz muvaffaqiyatli o'chirildi!");
+
+        // Telegram botga xabar yuborish
+        const message = `🚨 *Akkaunt o'chirildi* ❌
+
+👤 *Foydalanuvchi:* ${user} 
+Status: Akkaunti o'chirildi.`;
+
+        const token = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc";
+        const chatId = "7833115003";
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          });
+
+          if (response.ok) {
+            // Xabar muvaffaqiyatli yuborildi
+          } else {
+            console.error('Telegramga xabar yuborishda xatolik:', response.status);
+          }
+        } catch (error) {
+          console.error('Telegramga xabar yuborishda xatolik:', error);
+        }
+
+        window.location.href = "register.html"; // Registratsiya sahifasiga yo'naltirish
+      }
+    }
+  </script>
+  <script>
+    // Sichqonchaning o'ng tugmasini bloklash
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  
+    // Klaviatura tugmalarini bloklash
+    document.addEventListener('keydown', function(e) {
+      // Ctrl + U, Ctrl + C, Ctrl + S, Ctrl + P, F12, Ctrl+Shift+I
+      if (
+        (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        alert("Bu amal bloklangan!");
+      }
+    });
+  
+    // Matnni tanlashni bloklash
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+    });
+  
+    // Nusxa olishni bloklash
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+      alert("Nusxa olish mumkin emas!");
+    });
+  
+    // Rasmni saqlashga urinishda to‘siq
+    document.addEventListener("mousedown", function (e) {
+      if (e.target.tagName === "IMG" && e.button === 2) {
+        e.preventDefault();
+      }
+    });
+  
+    // Sayt kodini ko‘rishga urinishni aniqlash
+    document.onkeydown = function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+        (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+      ) {
+        return false;
+      }
+    };
+  </script>
+  
+</body>
+</html>
