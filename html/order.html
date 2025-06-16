@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elbek-Design</title>
+  <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
+<style>
+    /* Bootstrap 5 minimal custom overrides for form */
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f8fafc;
+      color: #212529;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .container {
+      background: #fff;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      max-width: 420px;
+      width: 100%;
+      margin: 2rem 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.25rem;
+      color: #0d6efd;
+      font-weight: 600;
+    }
+
+    label {
+      margin-top: 1rem;
+      font-weight: 500;
+      color: #495057;
+      font-size: 1rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      margin-top: 0.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid #ced4da;
+      background: #f8f9fa;
+      color: #212529;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #0d6efd;
+      outline: none;
+      background: #fff;
+    }
+
+    .phone-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .phone-group select {
+      width: 35%;
+      min-width: 70px;
+    }
+
+    .phone-group input {
+      width: 65%;
+    }
+
+    .gender-group {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .gender-group input[type="radio"] {
+      accent-color: #0d6efd;
+      margin-right: 0.25rem;
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .dob-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .dob-group input {
+      width: 33%;
+    }
+
+    .age-group {
+      margin-top: 0.5rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.65rem;
+      margin-top: 1.2rem;
+      background: #0d6efd;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 0.375rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0.25rem 0.5rem #0d6efd22;
+      transition: background .2s, box-shadow .2s;
+      letter-spacing: 0.5px;
+    }
+
+    button:hover, button:focus {
+      background: #0b5ed7;
+    }
+
+    .delete-btn {
+      background: #dc3545;
+      margin-top: 0.7rem;
+      box-shadow: 0 0.25rem 0.5rem #dc354522;
+    }
+
+    .delete-btn:hover, .delete-btn:focus {
+      background: #b02a37;
+    }
+
+    .success, .error {
+      padding: 0.7rem;
+      border-radius: 0.375rem;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.98rem;
+      display: none;
+    }
+
+    .success {
+      background: #198754;
+      color: #fff;
+    }
+
+    .error {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    #price {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #198754;
+      font-size: 1rem;
+    }
+
+    /* Premium animated effect for user display */
+    #userDisplay {
+      font-weight: bold;
+      background: linear-gradient(90deg, #ffd700, #ff8c00, #ffd700, #fff700, #ffd700);
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: premium-glow 2s linear infinite;
+      padding: 0.1em 0.4em;
+      border-radius: 0.4em;
+      box-shadow: 0 0 0.5em #ffd70055;
+      text-shadow: 0 0 8px #ffec80, 0 0 2px #ff8c00;
+      transition: filter 0.3s, text-shadow 0.3s;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet, red);
+      background-size: 400% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgb-glow 2s linear infinite;
+      padding: 0.1em 0.4em;
+      border-radius: 0.4em;
+      text-shadow: 0 0 8px #fff, 0 0 2px #000;
+        }
+
+        #userDisplay::after {
+      content: " ★ Premium";
+      font-size: 1.05em;
+      font-weight: 900;
+      margin-left: 0.6em;
+      color: #fff;
+      text-shadow: 0 0 8px #fff, 0 0 2px #000;
+      animation: rgb-star 1.2s linear infinite alternate;
+      letter-spacing: 0.08em;
+        }
+
+        @keyframes rgb-glow {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 400% 50%;
+      }
+        }
+
+        @keyframes rgb-star {
+      0% {
+        color: #fff;
+        text-shadow: 0 0 8px #fff, 0 0 2px #000;
+      }
+      100% {
+        color: #ff0;
+        text-shadow: 0 0 16px #ff0, 0 0 4px #000;
+      }
+        }
+
+        @media (max-width: 600px) {
+      .container {
+        padding: 1rem 2vw;
+        border-radius: 0.5rem;
+        max-width: 99vw;
+        margin: 0.5rem 0;
+      }
+      h2 {
+        font-size: 1rem;
+      }
+      label, input, select, textarea, button {
+        font-size: 0.95rem;
+      }
+      button {
+        padding: 0.5rem;
+      }
+      .phone-group select, .phone-group input, .dob-group input {
+        font-size: 0.95rem;
+      }
+      #userDisplay::after {
+        font-size: 0.9em;
+      }
+        }
+  </style>
+
+  
+</head>
+<body>
+
+
+
+
+  
+  <div class="container">
+    <!-- Dark/Light mode toggle button -->
+    <button id="themeToggle" style="position:absolute;top:1.2rem;right:1.2rem;width:2.5rem;height:2.5rem;background:#f8fafc;border:none;border-radius:50%;box-shadow:0 0.15rem 0.3rem #0001;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;">
+      <span id="themeIcon" style="font-size:1.4rem;">🌙</span>
+    </button>
+    <script>
+      // Theme toggle logic
+      const themeToggle = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const savedTheme = localStorage.getItem('theme');
+      let darkMode = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+      function setTheme(dark) {
+        document.body.style.background = dark ? '#181a1b' : '#f8fafc';
+        document.body.style.color = dark ? '#f1f3f4' : '#212529';
+        document.querySelector('.container').style.background = dark ? '#23272b' : '#fff';
+        document.querySelector('.container').style.boxShadow = dark ? '0 0.5rem 1rem #0004' : '0 0.5rem 1rem rgba(0,0,0,.05)';
+        themeIcon.textContent = dark ? '☀️' : '🌙';
+        // Inputs, selects, textarea
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+          el.style.background = dark ? '#23272b' : '#f8f9fa';
+          el.style.color = dark ? '#f1f3f4' : '#212529';
+          el.style.borderColor = dark ? '#444c56' : '#ced4da';
+        });
+        // Success/error
+        document.querySelectorAll('.success').forEach(el => el.style.background = dark ? '#198754' : '#198754');
+        document.querySelectorAll('.error').forEach(el => el.style.background = dark ? '#dc3545' : '#dc3545');
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+      }
+
+      setTheme(darkMode);
+
+      themeToggle.onclick = () => {
+        darkMode = !darkMode;
+        setTheme(darkMode);
+      };
+    </script>
+    <h2>🎨 Dizayn Buyurtma Formasi</h2>
+
+    
+
+    <p><strong>Foydalanuvchi:</strong> <span id="userDisplay"></span></p>
+
+    <label for="email">Elektron pochta:</label>
+    <input type="email" id="email" placeholder="example@gmail.com" required />
+
+    <label for="telegram">Telegram Username:</label>
+    <input type="text" id="telegram" placeholder="Telegram username (@username)" />
+
+    <label for="phone">Telefon raqami:</label>
+    <div class="phone-group">
+      <select id="country" onchange="updatePhonePrefix()" required>
+        <option value="+998">🇺🇿 +998</option>
+        <option value="+7">🇷🇺 +7</option>
+      </select>
+      <input type="tel" id="phone" placeholder="901234567" required />
+    </div>
+
+    <div class="gender-group">
+      <label for="gender">Jinsini tanlang:</label>
+      <input type="radio" id="male" name="gender" value="Erkak" required /> Erkak
+      <input type="radio" id="female" name="gender" value="Ayol" required /> Ayol
+    </div>
+
+    <div class="dob-group">
+      <label for="dob-day">Tug'ilgan kun:</label>
+      <input type="number" id="dob-day" placeholder="Kun" min="1" max="31" required />
+      <input type="number" id="dob-month" placeholder="Oy" min="1" max="12" required />
+      <input type="number" id="dob-year" placeholder="Yil" min="1900" max="2025" required />
+    </div>
+
+    <div class="age-group">
+      <label for="age">Yoshingiz:</label>
+      <input type="number" id="age" placeholder="Yoshingizni kiriting" min="1" max="120" required />
+    </div>
+
+    <label for="game">O‘yin yoki ijtimoiy tarmoq tanlang:</label>
+    <select id="game" required>
+      <option value="PUBG">🎮 PUBG</option>
+      <option value="PUBG">📢 Telegram</option>
+      <option value="CSGO 2">💣 CSGO 2</option>
+      <option value="DOTA 2">💎 DOTA 2</option>
+      <option value="Free Fire">🔥 Free Fire</option>
+      <option value="Call of Duty">⚔️ Call of Duty</option>
+      <option value="Minecraft">⛏ Minecraft</option>
+      <option value="Valorant">🎯 Valorant</option>
+      <option value="Resident Evil">🧟‍♂️ Resident Evil</option>
+      <option value="Silent Hill">🌫 Silent Hill</option>
+      <option value="Amnesia">😱 Amnesia</option>
+      <option value="Outlast">💀 Outlast</option>
+    </select>
+
+    <label for="type">Dizayn turi:</label>
+    <select id="type" required onchange="updatePrice()">
+      <option value="">-- Tanlang --</option>
+      <option value="Prevyou">📺 Prevyou</option>
+      <option value="Banner">🖼 Banner</option>
+      <option value="Avatarka">👤 Avatarka</option>
+      <option value="Logo">🎨 Logo</option>
+    </select>
+
+    <div id="price"></div>
+
+    <label for="comment">Qo‘shimcha izoh:</label>
+    <textarea id="comment" rows="4" placeholder="Masalan: O‘yinchi nomi, ranglar, yozuv..." required></textarea>
+
+    <button onclick="sendOrder()">📩 Buyurtma berish</button>
+    <button class="delete-btn" onclick="deleteAccount()">❌ Akkauntni o'chirish</button>
+
+    <div class="success" id="successMessage">✅ Buyurtma muvaffaqiyatli yuborildi!</div>
+    <div class="error" id="errorMessage">❌ Xatolik yuz berdi!</div>
+  </div>
+
+  <script>
+    const user = localStorage.getItem('user');
+    if (!user) {
+      alert("Iltimos, avval ro'yxatdan o'ting!");
+      window.location.href = "register.html";
+    } else {
+      document.getElementById("userDisplay").textContent = user;
+    }
+
+    const priceMap = {
+      "Prevyou": 25000,
+      "Banner": 15000,
+      "Avatarka": 10000,
+      "Logo": 15000
+    };
+
+    function updatePrice() {
+      const designType = document.getElementById("type").value;
+      const priceDiv = document.getElementById("price");
+      const price = priceMap[designType] || 0;
+
+      if (price > 0) {
+        priceDiv.innerText = `Narxi: ${price.toLocaleString()} so'm`;
+      } else {
+        priceDiv.innerText = "";
+      }
+    }
+
+    function updatePhonePrefix() {
+      const countryCode = document.getElementById("country").value;
+      const phoneInput = document.getElementById("phone");
+      phoneInput.value = countryCode === "+7" ? "701234567" : "901234567";
+    }
+
+    async function sendOrder() {
+      const email = document.getElementById("email").value.trim();
+      const telegram = document.getElementById("telegram").value.trim();
+      const country = document.getElementById("country").value;
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      const day = document.getElementById("dob-day").value.trim();
+      const month = document.getElementById("dob-month").value.trim();
+      const year = document.getElementById("dob-year").value.trim();
+      const age = document.getElementById("age").value.trim();
+      const game = document.getElementById("game").value;
+      const type = document.getElementById("type").value;
+      const comment = document.getElementById("comment").value.trim();
+      const price = priceMap[type] || 0; // Narxni olish
+
+      if (email && phone && gender && day && month && year && age && game && type && comment) {
+        const fullPhone = `${country} ${phone}`;
+        const dob = `${day}-${month}-${year}`;
+        const message = `
+🖌 *Yangi Dizayn Buyurtmasi* 🎨
+
+👤 *Foydalanuvchi:* ${user}
+📧 *Email:* ${email}
+📱 *Telefon:* ${fullPhone}
+📲 *Telegram Username:* ${telegram ? `@${telegram}` : 'N/A'}
+🚻 *Jinsi:* ${gender}
+🎂 *Tug‘ilgan sana:* ${dob}
+🔢 *Yosh:* ${age}
+🎮 *O‘yin:* ${game}
+🎨 *Dizayn turi:* ${type}
+💰 *Narxi:* ${price.toLocaleString()} so'm
+📝 *Izoh:* ${comment}
+        `.trim();
+
+        const token = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc";
+        const chatId = "7833115003";
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          });
+
+          if (response.ok) {
+            document.getElementById("successMessage").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("successMessage").style.display = "none";
+            }, 3000);
+          } else {
+            document.getElementById("errorMessage").style.display = "block";
+            setTimeout(() => {
+              document.getElementById("errorMessage").style.display = "none";
+            }, 3000);
+            console.error('Xatolik:', response.status);
+          }
+        } catch (error) {
+          document.getElementById("errorMessage").style.display = "block";
+          setTimeout(() => {
+            document.getElementById("errorMessage").style.display = "none";
+          }, 3000);
+          console.error('Xatolik:', error);
+        }
+
+      } else {
+        alert("Iltimos, barcha maydonlarni to‘ldiring!");
+      }
+    }
+
+    async function deleteAccount() {
+      if (confirm("Akkauntingizni o'chirishni xohlaysizmi?")) {
+        localStorage.removeItem("user");
+        alert("Akkauntingiz muvaffaqiyatli o'chirildi!");
+
+        // Telegram botga xabar yuborish
+        const message = `🚨 *Akkaunt o'chirildi* ❌
+
+👤 *Foydalanuvchi:* ${user} 
+Status: Akkaunti o'chirildi.`;
+
+        const token = "7606592691:AAEX0POICKvjbOEwNQuAdUn-wqcqKdl-Gvc";
+        const chatId = "7833115003";
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown"
+            })
+          });
+
+          if (response.ok) {
+            // Xabar muvaffaqiyatli yuborildi
+          } else {
+            console.error('Telegramga xabar yuborishda xatolik:', response.status);
+          }
+        } catch (error) {
+          console.error('Telegramga xabar yuborishda xatolik:', error);
+        }
+
+        window.location.href = "register.html"; // Registratsiya sahifasiga yo'naltirish
+      }
+    }
+  </script>
+  <script>
+    // Sichqonchaning o'ng tugmasini bloklash
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  
+    // Klaviatura tugmalarini bloklash
+    document.addEventListener('keydown', function(e) {
+      // Ctrl + U, Ctrl + C, Ctrl + S, Ctrl + P, F12, Ctrl+Shift+I
+      if (
+        (e.ctrlKey && ['u', 's', 'p', 'c'].includes(e.key.toLowerCase())) ||
+        (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'i') ||
+        e.key === 'F12'
+      ) {
+        e.preventDefault();
+        alert("Bu amal bloklangan!");
+      }
+    });
+  
+    // Matnni tanlashni bloklash
+    document.addEventListener('selectstart', function(e) {
+      e.preventDefault();
+    });
+  
+    // Nusxa olishni bloklash
+    document.addEventListener('copy', function(e) {
+      e.preventDefault();
+      alert("Nusxa olish mumkin emas!");
+    });
+  
+    // Rasmni saqlashga urinishda to‘siq
+    document.addEventListener("mousedown", function (e) {
+      if (e.target.tagName === "IMG" && e.button === 2) {
+        e.preventDefault();
+      }
+    });
+  
+    // Sayt kodini ko‘rishga urinishni aniqlash
+    document.onkeydown = function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+        (e.ctrlKey && e.keyCode === 85) // Ctrl+U
+      ) {
+        return false;
+      }
+    };
+  </script>
+  
+</body>
+</html>

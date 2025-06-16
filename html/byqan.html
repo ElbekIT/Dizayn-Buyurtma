@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elbek Dizayn - Bosh Sahifa</title>
+  <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #f8fafc;
+      color: #212529;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0d6efd 60%, #6610f2 100%);
+      color: #fff;
+      padding: 32px 0;
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 32px 24px;
+      background: #fff;
+      border-radius: 1.5rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.07);
+      animation: fadeIn 1.2s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0d6efd;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+      background: #f1f3f9;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(13,110,253,0.04);
+    }
+
+    .step img {
+      width: 160px;
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 8px rgba(102,16,242,0.08);
+      border: 3px solid #e3e7ef;
+      background: #fff;
+    }
+
+    .step .description {
+      flex: 1;
+    }
+
+    .step .description h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.25rem;
+      color: #6610f2;
+      font-weight: 600;
+    }
+
+    .step .description p {
+      margin: 0;
+      color: #495057;
+      line-height: 1.7;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta a {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: linear-gradient(90deg, #0d6efd 60%, #6610f2 100%);
+      color: #fff;
+      font-weight: 600;
+      border-radius: 2rem;
+      text-decoration: none;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 16px rgba(13,110,253,0.13);
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .cta a:hover {
+      background: linear-gradient(90deg, #6610f2 60%, #0d6efd 100%);
+      transform: translateY(-2px) scale(1.04);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🎨 Elbek Dizayn Xizmati
+  </header>
+
+  <main>
+    <h2>Buyurtma berish qanday ishlaydi?</h2>
+
+    <div class="step">
+      <img src="/img/ggg.jpg" alt="Buyurtma formasi skrinshoti">
+      <div class="description">
+        <h3>1-qadam: Formani to‘ldiring</h3>
+        <p>Telegram username, email, telefon raqamingiz va boshqa kerakli ma'lumotlarni to‘ldiring. Har bir bo‘lim aniq va tushunarli.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <img src="/img/44.jpg" alt="Dizayn tanlash">
+      <div class="description">
+        <h3>2-qadam: Dizayn va o‘yinni tanlang</h3>
+        <p>O‘ynayotgan o‘yingizni (PUBG, Free Fire va h.k.) va kerakli dizayn turini tanlang. Masalan: Banner, Logo, YouTube cover.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <img src="/img/55.jpg" alt="Qo‘shimcha izohlar">
+      <div class="description">
+        <h3>3-qadam: Qo‘shimcha izoh qoldiring</h3>
+        <p>Rang, yozuv yoki dizayndagi maxsus talablaringiz bo‘lsa yozib qoldiring. Shunda sizga aniq va mos dizayn tayyorlanadi.</p>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="/index.html">👈 ORQAGA QAYTISH</a>
+    </div>
+  </main>
+
+  <script>
+    // 🛡️ Xavfsizlik cheklovlari
+    document.addEventListener("keydown", function (e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J" || e.key === "C")) ||
+        (e.ctrlKey && e.key === "U")
+      ) {
+        e.preventDefault();
+        alert("Bu amal cheklangan.");
+      }
+    });
+
+    document.addEventListener("contextmenu", e => {
+      e.preventDefault();
+      alert("O‘ng tugma bloklangan.");
+    });
+
+    document.addEventListener("copy", e => {
+      e.preventDefault();
+      alert("Nusxa olish taqiqlangan.");
+    });
+
+    document.addEventListener("cut", e => {
+      e.preventDefault();
+    });
+
+    document.addEventListener("selectstart", e => {
+      e.preventDefault();
+    });
+  </script>
+
+</body>
+</html>

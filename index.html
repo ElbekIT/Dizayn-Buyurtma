@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elbek Design</title>
+  <link rel="icon" href="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    /* Bootstrap-like minimal custom styles for a fresh look */
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 1rem;
+      padding: 2.5rem 2rem 2rem 2rem;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      color: #212529;
+      box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.08);
+      border: 1px solid #e3e6ea;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      color: #0d6efd;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .info {
+      margin-bottom: 1.5rem;
+    }
+
+    .info p {
+      margin: 0.4rem 0;
+      font-size: 1.05rem;
+      color: #495057;
+    }
+
+    .status {
+      font-weight: 600;
+      margin-top: 1rem;
+      font-size: 1.08rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: #0d6efd;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px #0d6efd22;
+      transition: background 0.18s, color 0.18s, transform 0.15s;
+      outline: none;
+    }
+
+    .btn:hover, .btn:focus {
+      background: #0b5ed7;
+      color: #fff;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .help-btn {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      width: 52px;
+      height: 52px;
+      background: #0d6efd;
+      border-radius: 50%;
+      border: none;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 18px #0d6efd33, 0 2px 8px #0d6efd22;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: box-shadow 0.2s, transform 0.2s;
+      z-index: 1001;
+    }
+
+    .help-btn:hover {
+      box-shadow: 0 0 32px #0d6efd66, 0 4px 16px #0d6efd33;
+      transform: scale(1.07);
+    }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(33, 37, 41, 0.65);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: modalFadeIn 0.4s;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal {
+      background: #fff;
+      padding: 2rem 1.2rem 1.2rem 1.2rem;
+      border-radius: 1rem;
+      text-align: center;
+      max-width: 320px;
+      color: #232526;
+      position: relative;
+      box-shadow: 0 8px 32px #0d6efd22;
+      border: 1px solid #e3e6ea;
+      animation: modalPop 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+
+    @keyframes modalPop {
+      0% { transform: scale(0.92) translateY(40px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .modal img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 2px 12px #0d6efd22;
+      border: 2px solid #0d6efd33;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.4rem;
+      color: #0d6efd;
+      cursor: pointer;
+      background: none;
+      border: none;
+      transition: color 0.2s;
+    }
+
+    .close-btn:hover {
+      color: #0b5ed7;
+    }
+
+    @media (max-width: 540px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      .card {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+        max-width: 98vw;
+        border-radius: 0.7rem;
+      }
+      .btn {
+        font-size: 0.97rem;
+        padding: 0.6rem 0.7rem;
+      }
+      .modal {
+        width: 96vw;
+        padding: 1rem 0.3rem 0.7rem 0.3rem;
+        border-radius: 0.7rem;
+      }
+      .help-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        left: 10px;
+        bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+
+
+  
+
+
+
+  <div class="card">
+    <h1>Elbek Design</h1>
+    <div class="info">
+      <p id="date"></p>
+      <p id="time"></p>
+      <p>💼 Ish vaqti: 07:00 – 01:00</p>
+      <p class="status" id="status"></p>
+    </div>
+    <div class="btn-group">
+      <a href="/html/byqan.html" class="btn">📄 Qanday buyurtma beriladi?</a>
+      <button class="btn" onclick="checkOrderTime()">📝 Buyurtma berish</button>
+    </div>
+  </div>
+
+  <!-- Yordam tugmasi -->
+  <button class="help-btn" onclick="openHelp()">❓</button>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="helpModal">
+    <div class="modal">
+      <span class="close-btn" onclick="closeHelp()">✖</span>
+      <img src="/img/36cc6850-12bc-4bd8-8721-4833a90f2da8.png" alt="Logo" />
+      <h3>Elbek Qoriyev</h3>
+      <p>📞 +998 90 406 30 90</p>
+      <p style="color: #837d7d; font-size: 14px; margin-top: 10px;">
+        ⚠️ Diqqat: Bu raqam faqat ish vaqtida (07:00 – 01:00) faol!
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const dayNames = ['Yakshanba', 'Dushanba', 'Seshanba', 'Chorshanba', 'Payshanba', 'Juma', 'Shanba'];
+      const day = dayNames[now.getDay()];
+      const date = String(now.getDate()).padStart(2, '0');
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const year = now.getFullYear();
+      document.getElementById("date").textContent = `📆 ${day}, ${date}.${month}.${year}`;
+
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById("time").textContent = `🕒 ${hours}:${minutes}:${seconds}`;
+
+      const nowTime = now.getHours() * 60 + now.getMinutes();
+      const start = 7 * 60;
+      const end = 1 * 60;
+
+      const isOpen = nowTime >= start || nowTime < end;
+      document.getElementById("status").innerHTML = isOpen
+        ? "📢 <span style='color:limegreen'>Ish olib borilmoqda</span>"
+        : "⚠️ <span style='color:red'>Hozir ish vaqti emas</span>";
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+
+    function checkOrderTime() {
+      const now = new Date();
+      const nowTime = now.getHours() * 60 + now.getMinutes();
+      const start = 7 * 60;
+      const end = 1 * 60;
+
+      if (nowTime >= start || nowTime < end) {
+        window.location.href = "/html/order.html";
+      } else {
+        alert("⚠️ Hozir ish vaqti emas. Buyurtma berish uchun 07:00 dan 01:00 gacha kuting.");
+      }
+    }
+
+    function openHelp() {
+      document.getElementById("helpModal").style.display = "flex";
+    }
+
+    function closeHelp() {
+      document.getElementById("helpModal").style.display = "none";
+    }
+  </script>
+
+
+ 
+
+
+
+</body>
+</html>
